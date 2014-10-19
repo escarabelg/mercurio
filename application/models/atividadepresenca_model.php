@@ -90,7 +90,7 @@ class AtividadePresenca_model extends CI_Model {
     }
     
     public function data() {
-        echo "teste commit";
+        echo "Netbeans erro no commit, utilizarei o terminal para versionamento";
     }
 
 }
