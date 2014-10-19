@@ -89,8 +89,23 @@ class AtividadePresenca_model extends CI_Model {
         }
     }
     
-    public function data() {
-        echo "Netbeans erro no commit, utilizarei o terminal para versionamento";
+    public function obter_dataAtividade_mostrar_array($atividadesId = null) {
+        if($atividadesId != null) {
+            $this->db->where("atividadesId", $atividadesId);
+            $query = $this->db->get("atividades");
+            
+            if($query->num_rows() > 0 ) {
+                $atividade = $query->row();
+                $atividade['atividadesDataInicio'];
+                $atividade['atividadesDataTermino'];
+                
+                
+            } else {
+                return false;
+            }
+            
+            
+        }
     }
 
 }
