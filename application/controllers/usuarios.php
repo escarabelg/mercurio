@@ -58,30 +58,35 @@ class Usuarios extends CI_Controller {
     public function alterar() {
         //Verificando se o usuario está logado se estiver ele entra na condição abaixo
         if (element('usuario-id', $this->session->all_userdata()) != null) {
+            if (element('usuario-permissao', $this->session->all_userdata()) == 1) {
 
-            //Chamando o metodo que faz as regras de validação
-            $this->validacao_dos_dados_alterar();
-
-
-            //verificando se possui algum erro na validação
-            if ($this->form_validation->run() === true) {
-                //caso não houver erro pegamos os dados 
-                $dados = elements(array('usuariosNome', 'usuariosCpf', 'usuariosCep', 'usuariosDataDeNascimento', 'usuariosTitulacoes', 'usuariosEndereco', 'usuariosBairro', 'usuariosNumero', 'usuariosEstado', 'usuariosCidade'), $this->input->post());
-
-                //E atualizamos os dados no banco
-                $this->usuarios_model->alterar($dados, array('usuariosId' => $this->input->post('usuariosId')));
+                //Chamando o metodo que faz as regras de validação
+                $this->validacao_dos_dados_alterar();
 
 
-                $this->session->set_flashdata('alterar-ok', 'O usuário foi alterado com sucesso!');
+                //verificando se possui algum erro na validação
+                if ($this->form_validation->run() === true) {
+                    //caso não houver erro pegamos os dados 
+                    $dados = elements(array('usuariosNome', 'usuariosCpf', 'usuariosCep', 'usuariosDataDeNascimento', 'usuariosTitulacoes', 'usuariosEndereco', 'usuariosBairro', 'usuariosNumero', 'usuariosEstado', 'usuariosCidade'), $this->input->post());
 
-                redirect('usuarios/listar');
+                    //E atualizamos os dados no banco
+                    $this->usuarios_model->alterar($dados, array('usuariosId' => $this->input->post('usuariosId')));
+
+
+                    $this->session->set_flashdata('alterar-ok', 'O usuário foi alterado com sucesso!');
+
+                    redirect('usuarios/listar');
+                }
+                $data = array(
+                    'arquivo' => 'alterar',
+                    'controllador' => 'usuarios',
+                    'titulo' => 'login',
+                );
+                $this->load->view('sistema', $data);
+            } else {
+                $this->session->set_flashdata('sem-permissao', 'É necessário ser administrador para realizar essa ação!');
+                redirect('usuarios/login');
             }
-            $data = array(
-                'arquivo' => 'alterar',
-                'controllador' => 'usuarios',
-                'titulo' => 'login',
-            );
-            $this->load->view('sistema', $data);
         } else {
             $this->session->set_flashdata('retrieve-action', 'É necessário estar logado para realizar esta ação!');
             redirect('usuarios/login');
@@ -91,13 +96,18 @@ class Usuarios extends CI_Controller {
     public function listar() {
         //Verificando se o usuario está logado se estiver ele entra na condição abaixo
         if (element('usuario-id', $this->session->all_userdata()) != null) {
-            $data = array(
-                'arquivo' => 'listar',
-                'controllador' => 'usuarios',
-                'titulo' => 'Listar Dados',
-                'usuarios' => $this->usuarios_model->listar()->result(),
-            );
-            $this->load->view('sistema', $data);
+            if (element('usuario-permissao', $this->session->all_userdata()) == 1) {
+                $data = array(
+                    'arquivo' => 'listar',
+                    'controllador' => 'usuarios',
+                    'titulo' => 'Listar Dados',
+                    'usuarios' => $this->usuarios_model->listar()->result(),
+                );
+                $this->load->view('sistema', $data);
+            } else {
+                $this->session->set_flashdata('sem-permissao', 'É necessário ser administrador para realizar essa ação!');
+                redirect('usuarios/login');
+            }
         } else {
             $this->session->set_flashdata('retrieve-action', 'É necessário estar logado para realizar esta ação!');
             redirect('usuarios/login');
@@ -107,22 +117,27 @@ class Usuarios extends CI_Controller {
     public function deletar() {
         //Verificando se o usuario está logado se estiver ele entra na condição abaixo
         if (element('usuario-id', $this->session->all_userdata()) != null) {
-            //Verificando se existe essa requisição no post
-            if ($this->input->post('usuariosId') > 0) {
-                //Caso exista mesmo uma requisição será chamado o metodo de deleção do modelo de usuarios
-                $this->usuarios_model->deletar(array('usuariosId' => $this->input->post('usuariosId')));
+            if (element('usuario-permissao', $this->session->all_userdata()) == 1) {
+                //Verificando se existe essa requisição no post
+                if ($this->input->post('usuariosId') > 0) {
+                    //Caso exista mesmo uma requisição será chamado o metodo de deleção do modelo de usuarios
+                    $this->usuarios_model->deletar(array('usuariosId' => $this->input->post('usuariosId')));
 
-                //Habilitando um flashdata para notificar o sucesso do login
-                $this->session->set_flashdata('deletar-ok', 'O usuário foi deletado com sucesso!');
+                    //Habilitando um flashdata para notificar o sucesso do login
+                    $this->session->set_flashdata('deletar-ok', 'O usuário foi deletado com sucesso!');
 
-                redirect('usuarios/listar');
+                    redirect('usuarios/listar');
+                }
+                $data = array(
+                    'arquivo' => 'deletar',
+                    'controllador' => 'usuarios',
+                    'titulo' => 'Deletar Usuário',
+                );
+                $this->load->view('sistema', $data);
+            } else {
+                $this->session->set_flashdata('sem-permissao', 'É necessário ser administrador para realizar essa ação!');
+                redirect('usuarios/login');
             }
-            $data = array(
-                'arquivo' => 'deletar',
-                'controllador' => 'usuarios',
-                'titulo' => 'Deletar Usuário',
-            );
-            $this->load->view('sistema', $data);
         } else {
             $this->session->set_flashdata('retrieve-action', 'É necessário estar logado para realizar esta ação!');
             redirect('usuarios/login');

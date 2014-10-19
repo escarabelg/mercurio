@@ -95,4 +95,34 @@ class Atividades_model extends CI_Model {
         }
     }
 
+    public function obter_dataAtividade_mostrar_array($atividadesId = null) {
+        if ($atividadesId != null) {
+            $this->db->where("atividadesId", $atividadesId);
+            $query = $this->db->get("atividades");
+
+            if ($query->num_rows() > 0) {
+                $diaInicio = substr($query->row()->atividadesDataInicio, -2);
+                $diaTermino = substr($query->row()->atividadesDataTermino, -2);
+                $ano_mes = substr($query->row()->atividadesDataInicio, 0, 8);
+                $totalDeDias = $diaTermino - $diaInicio;
+                $dataDaAtividade = array();
+
+                
+                for ($i = 0; $i <= $totalDeDias; $i++) {
+                    if($i == 0) {
+                        $dataDaAtividade[$i] = $ano_mes . $diaInicio;
+                    }
+                    if (strlen($diaInicio) == 2) {
+                        $dataDaAtividade[$i] = $ano_mes .$diaInicio++;   
+                    } else {
+                        $dataDaAtividade[$i] = $ano_mes ."0". $diaInicio++;               
+                    }
+                }
+                return $dataDaAtividade;
+            } else {
+                return false;
+            }
+        }
+    }
+
 }

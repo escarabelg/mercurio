@@ -7,6 +7,14 @@ if ($this->session->flashdata('login-erro')) {
     echo "<div id='mask'></div>";
     echo "</div>";
 }
+if ($this->session->flashdata('sem-permissao')) {
+    echo "<div onload='dialog()' id='boxes'>";
+    echo "<div id='dialog' class='window'>";
+    echo "<p class='mensagem-erro'>" . $this->session->flashdata('sem-permissao') . "</p>";
+    echo "</div>";
+    echo "<div id='mask'></div>";
+    echo "</div>";
+}
 if ($this->session->flashdata('retrieve-action')) {
     echo "<div onload='dialog()' id='boxes'>";
     echo "<div id='dialog' class='window'>";

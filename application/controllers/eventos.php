@@ -26,30 +26,35 @@ class Eventos extends CI_Controller {
 
     public function inserir() {
         if ($this->session->userdata('usuario-id') != null) {
-            //Chamando o método que faz as regras de validação
-            $this->validacao_dos_dados();
+            if (element('usuario-permissao', $this->session->all_userdata()) == 1) {
+                //Chamando o método que faz as regras de validação
+                $this->validacao_dos_dados();
 
-            //Irá verificar validar os dados informados no formulario com base nas regras
-            if ($this->form_validation->run() === true) {
+                //Irá verificar validar os dados informados no formulario com base nas regras
+                if ($this->form_validation->run() === true) {
 
-                //Caso não houver nenhum erro de validação, iremos pegar os dados  via POST
-                $dados = elements(array('eventosNome','eventosCriadorId', 'eventosDescricao', 'eventosEmail', 'eventosDataInicio', 'eventosDataTermino', 'eventosLocal', 'eventosCep', 'eventosEndereco', 'eventosBairro', 'eventosNumero', 'eventosEstado', 'eventosCidade', 'eventosValor', 'eventosVisibilidade'), $this->input->post());
+                    //Caso não houver nenhum erro de validação, iremos pegar os dados  via POST
+                    $dados = elements(array('eventosNome', 'eventosCriadorId', 'eventosDescricao', 'eventosEmail', 'eventosDataInicio', 'eventosDataTermino', 'eventosLocal', 'eventosCep', 'eventosEndereco', 'eventosBairro', 'eventosNumero', 'eventosEstado', 'eventosCidade', 'eventosValor', 'eventosVisibilidade'), $this->input->post());
 
-                //Agora vamos chamar o model eventos para utilizar o método de inserção no banco de dados
-                $this->eventos_model->inserir($dados);
+                    //Agora vamos chamar o model eventos para utilizar o método de inserção no banco de dados
+                    $this->eventos_model->inserir($dados);
 
-                //Habilitando um flashdata para notificar o sucesso da inserção
-                $this->session->set_flashdata('cadastro-ok', 'Cadastro efetuado com Sucesso!');
+                    //Habilitando um flashdata para notificar o sucesso da inserção
+                    $this->session->set_flashdata('cadastro-ok', 'Cadastro efetuado com Sucesso!');
 
-                //Redirecionando para uma página
-                redirect('eventos/listar');
+                    //Redirecionando para uma página
+                    redirect('eventos/listar');
+                }
+                $data = array(
+                    'arquivo' => 'inserir',
+                    'controllador' => 'eventos',
+                    'titulo' => 'Cadastro de Eventos',
+                );
+                $this->load->view('sistema', $data);
+            } else {
+                $this->session->set_flashdata('sem-permissao', 'É necessário ser administrador para realizar essa ação!');
+                redirect('usuarios/login');
             }
-            $data = array(
-                'arquivo' => 'inserir',
-                'controllador' => 'eventos',
-                'titulo' => 'Cadastro de Eventos',
-            );
-            $this->load->view('sistema', $data);
         } else {
             $this->session->set_flashdata('retrieve-action', 'É necessário estar logado para realizar esta ação!');
             redirect('usuarios/login');
@@ -58,14 +63,19 @@ class Eventos extends CI_Controller {
 
     public function listar() {
         if ($this->session->userdata('usuario-id') != null) {
+            if (element('usuario-permissao', $this->session->all_userdata()) == 1) {
 
-            $data = array(
-                'arquivo' => 'listar',
-                'controllador' => 'eventos',
-                'titulo' => 'Lista de Eventos',
-                'eventos' => $this->eventos_model->listar()->result(),
-            );
-            $this->load->view('sistema', $data);
+                $data = array(
+                    'arquivo' => 'listar',
+                    'controllador' => 'eventos',
+                    'titulo' => 'Lista de Eventos',
+                    'eventos' => $this->eventos_model->listar()->result(),
+                );
+                $this->load->view('sistema', $data);
+            } else {
+                $this->session->set_flashdata('sem-permissao', 'É necessário ser administrador para realizar essa ação!');
+                redirect('usuarios/login');
+            }
         } else {
             $this->session->set_flashdata('retrieve-action', 'É necessário estar logado para realizar esta ação!');
             redirect('usuarios/login');
@@ -74,30 +84,35 @@ class Eventos extends CI_Controller {
 
     public function alterar() {
         if ($this->session->userdata('usuario-id') != null) {
+            if (element('usuario-permissao', $this->session->all_userdata()) == 1) {
 
-            //Chamando o metodo que define as regras de validação
-            $this->validacao_dos_dados_alterar();
+                //Chamando o metodo que define as regras de validação
+                $this->validacao_dos_dados_alterar();
 
-            //verificando se os dados informados são validos de acordo com a validação
-            if ($this->form_validation->run() === true) {
-                //Se não houver nenhum erro de validação iremos pegar os dados informados
-                $dados = elements(array('eventosNome', 'eventosDescricao', 'eventosDataInicio', 'eventosDataTermino', 'eventosLocal', 'eventosCep', 'eventosEndereco', 'eventosBairro', 'eventosNumero', 'eventosEstado', 'eventosCidade', 'eventosValor', 'eventosVisibilidade'), $this->input->post());
+                //verificando se os dados informados são validos de acordo com a validação
+                if ($this->form_validation->run() === true) {
+                    //Se não houver nenhum erro de validação iremos pegar os dados informados
+                    $dados = elements(array('eventosNome', 'eventosDescricao', 'eventosDataInicio', 'eventosDataTermino', 'eventosLocal', 'eventosCep', 'eventosEndereco', 'eventosBairro', 'eventosNumero', 'eventosEstado', 'eventosCidade', 'eventosValor', 'eventosVisibilidade'), $this->input->post());
 
-                //Chamando o modelo de eventos para salvar no banco de dados as alterações
-                $this->eventos_model->alterar($dados, array('eventosId' => $this->input->post('eventosId')));
+                    //Chamando o modelo de eventos para salvar no banco de dados as alterações
+                    $this->eventos_model->alterar($dados, array('eventosId' => $this->input->post('eventosId')));
 
-                //Criando um flashdata para informar o sucesso na alteração
-                $this->session->set_flashdata('alterar-ok', 'Evento alterado com sucesso!');
+                    //Criando um flashdata para informar o sucesso na alteração
+                    $this->session->set_flashdata('alterar-ok', 'Evento alterado com sucesso!');
 
-                //redirecionando para a listagem de eventos
-                redirect('eventos/listar');
+                    //redirecionando para a listagem de eventos
+                    redirect('eventos/listar');
+                }
+                $data = array(
+                    'arquivo' => 'alterar',
+                    'controllador' => 'eventos',
+                    'titulo' => 'Alterar Eventos',
+                );
+                $this->load->view('sistema', $data);
+            } else {
+                $this->session->set_flashdata('sem-permissao', 'É necessário ser administrador para realizar essa ação!');
+                redirect('usuarios/login');
             }
-            $data = array(
-                'arquivo' => 'alterar',
-                'controllador' => 'eventos',
-                'titulo' => 'Alterar Eventos',
-            );
-            $this->load->view('sistema', $data);
         } else {
             $this->session->set_flashdata('retrieve-action', 'É necessário estar logado para realizar esta ação!');
             redirect('usuarios/login');
@@ -106,24 +121,29 @@ class Eventos extends CI_Controller {
 
     public function deletar() {
         if ($this->session->userdata('usuario-id') != null) {
+            if (element('usuario-permissao', $this->session->all_userdata()) == 1) {
 
-            //Verificando se existe uma requisição de deleção
-            if ($this->input->post('eventosId') != null) {
-                //se  houver uma requisição, então será deletado do banco de dados
-                $this->eventos_model->deletar($this->input->post('eventosId'));
+                //Verificando se existe uma requisição de deleção
+                if ($this->input->post('eventosId') != null) {
+                    //se  houver uma requisição, então será deletado do banco de dados
+                    $this->eventos_model->deletar($this->input->post('eventosId'));
 
-                //Criando um flashdata para informar o sucesso na alteração
-                $this->session->set_flashdata('deletar-ok', 'Evento deletado com sucesso!');
+                    //Criando um flashdata para informar o sucesso na alteração
+                    $this->session->set_flashdata('deletar-ok', 'Evento deletado com sucesso!');
 
-                //redirecionando para a listagem de eventos
-                redirect('eventos/listar');
+                    //redirecionando para a listagem de eventos
+                    redirect('eventos/listar');
+                }
+                $data = array(
+                    'arquivo' => 'deletar',
+                    'controllador' => 'eventos',
+                    'titulo' => 'Deletar Evento',
+                );
+                $this->load->view('sistema', $data);
+            } else {
+                $this->session->set_flashdata('sem-permissao', 'É necessário ser administrador para realizar essa ação!');
+                redirect('usuarios/login');
             }
-            $data = array(
-                'arquivo' => 'deletar',
-                'controllador' => 'eventos',
-                'titulo' => 'Deletar Evento',
-            );
-            $this->load->view('sistema', $data);
         } else {
             $this->session->set_flashdata('retrieve-action', 'É necessário estar logado para realizar esta ação!');
             redirect('usuarios/login');
