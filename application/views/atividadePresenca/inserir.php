@@ -15,12 +15,16 @@ echo form_dropdown('atividadePresencaEventosId', $evento);
 if($this->input->post('atividadePresencaEventosId') != null) {
     $atividade = new ArrayObject;
     foreach($atividades as $row) {$atividade[$row->atividadesId] = $row->atividadesNome;}
-
+    
     echo form_label('Atividade');
     echo form_dropdown('atividadePresencaAtividadesId', $atividade);
-
+    
     if($this->input->post('atividadePresencaAtividadesId') != null) {
         
+        echo form_label('Data');
+        echo form_dropdown('atividadePresencaData', array('agua' => 'A'));
+
+    if($this->input->post('atividadePresencaData') != null) {
         foreach ($inscricoes as $linha) {
             if($linha->inscricoesAtividadesId == $this->input->post('atividadePresencaAtividadesId')) {
                 $this->table->set_heading('Usuário', 'Presente?');
@@ -28,6 +32,9 @@ if($this->input->post('atividadePresencaEventosId') != null) {
             }
         }
         echo $this->table->generate();
+    } else {
+        echo form_submit(array('name' => 'pesquisar'), 'Pesquisar');
+    }
     
     } else {
         echo form_submit(array('name' => 'pesquisar'), 'Pesquisar');
@@ -35,7 +42,7 @@ if($this->input->post('atividadePresencaEventosId') != null) {
 } else {
     echo form_submit(array('name' => 'pesquisar'), 'Pesquisar');
 }
-if($this->input->post('atividadePresencaAtividadesId') != null && $this->input->post('atividadePresencaEventosId') != null) {
+if($this->input->post('atividadePresencaAtividadesId') != null && $this->input->post('atividadePresencaEventosId') != null && $this->input->post('atividadePresencaData') != null) {
     echo form_submit(array('name' => 'cadastrar'), 'Cadastrar');
 }
 echo form_close();
