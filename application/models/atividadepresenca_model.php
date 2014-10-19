@@ -90,7 +90,7 @@ class AtividadePresenca_model extends CI_Model {
     }
     
     public function data() {
-        
+        echo "dfffdf";
     }
 
 }
