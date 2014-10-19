@@ -7,6 +7,7 @@ class Atividades_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        $this->load->model('inscricoes_model');
     }
 
     public function inserir($dados = null) {
@@ -59,6 +60,11 @@ class Atividades_model extends CI_Model {
         $this->db->where('atividadesEventosId', $eventoId);
         return $this->db->get('atividades');
     }
+    
+    public function listar_por_usuario($usuarioId) {
+        $sql = "SELECT * FROM atividades a JOIN inscricoes i ON a.atividadesId = i.inscricoesAtividadesId  JOIN usuarios u ON u.usuariosId = i.inscricoesUsuariosId WHERE a.atividadesVisibilidade = 'S' AND u.usuariosId = ?";
+        return $this->db->query($sql, $usuarioId);
+    }
 
     public function obter_evento_por_atividade($id = null) {
         if ($id != null) {
@@ -107,15 +113,15 @@ class Atividades_model extends CI_Model {
                 $totalDeDias = $diaTermino - $diaInicio;
                 $dataDaAtividade = array();
 
-                
+
                 for ($i = 0; $i <= $totalDeDias; $i++) {
-                    if($i == 0) {
+                    if ($i == 0) {
                         $dataDaAtividade[$i] = $ano_mes . $diaInicio;
                     }
                     if (strlen($diaInicio) == 2) {
-                        $dataDaAtividade[$i] = $ano_mes .$diaInicio++;   
+                        $dataDaAtividade[$i] = $ano_mes . $diaInicio++;
                     } else {
-                        $dataDaAtividade[$i] = $ano_mes ."0". $diaInicio++;               
+                        $dataDaAtividade[$i] = $ano_mes . "0" . $diaInicio++;
                     }
                 }
                 return $dataDaAtividade;

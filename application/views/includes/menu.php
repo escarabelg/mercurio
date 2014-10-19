@@ -18,6 +18,9 @@
             &nsc;Inscricoes:
             <?php echo anchor('inscricoes/inserir', 'C') . anchor('inscricoes/listar', 'R') . anchor('inscricoes/deletar', 'D'); ?>
             <br/>
+            &nsc;Presença nas Atividades:
+            <?php echo anchor('atividadePresenca/inserir', 'Inserir'); ?>
+            <br/>
             <?php
             $data = $this->session->all_userdata();
             if (element('usuario-id', $data) != null) {
@@ -37,15 +40,23 @@ endif;
 if (element('usuario-permissao', $this->session->all_userdata()) == 0):
     ?>
     <div class="caixa-menu">
+
+
         <?php
         $data = $this->session->all_userdata();
         if (element('usuario-id', $data) != null) {
-            echo "&nsc;";
-            echo "<span class='mensagem-sucesso'>";
+        echo "&nsc;";
+        echo anchor('usuarios/index', 'Início');
+        echo "<br/>";
+        echo "&nsc;";
+        echo anchor('inscricoes/inserir', 'Inscrever-se');
+        echo "<br/>";
+        echo "&nsc;";
+        echo "<span class='mensagem-sucesso'>";
             echo "Olá, " . $this->session->userdata('usuario-email') . "</span> - " . anchor('usuarios/logout', 'Logout');
         } else {
-            echo "&nsc;";
-            echo anchor('usuarios/login', 'Faça seu Login');
+        echo "&nsc;";
+        echo anchor('usuarios/login', 'Faça seu Login');
         }
         ?>
     </p>

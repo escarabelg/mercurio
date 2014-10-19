@@ -48,5 +48,6 @@ if ($this->session->flashdata('cadastro-ok')) {
     echo form_submit(array('name' => 'entrar'), 'Entrar');
     echo anchor('usuarios/inserir', ' Não possui uma conta?');
     echo form_close();
+   
     ?>
 </div>

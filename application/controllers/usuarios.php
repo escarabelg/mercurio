@@ -13,15 +13,18 @@ class Usuarios extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->library('table');
         $this->load->model('usuarios_model');
+        $this->load->model('atividades_model');
     }
 
     public function index() {
+        $id = $this->session->userdata('usuario-id');
         $data = array(
             'arquivo' => 'index',
             'controllador' => 'usuarios',
-            'titulo' => 'login',
+            'titulo' => 'INDEX',
+            'atividades' => $this->atividades_model->listar_por_usuario($id)->result(),
         );
-        $this->load->view('usuarios', $data);
+        $this->load->view('sistema', $data);
     }
 
     public function inserir() {

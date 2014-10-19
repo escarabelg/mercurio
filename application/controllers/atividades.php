@@ -30,23 +30,25 @@ class Atividades extends CI_Controller {
     public function inserir() {
         if ($this->session->userdata('usuario-id') != null) {
             if (element('usuario-permissao', $this->session->all_userdata()) == 1) {
-                //Chamando o método que faz as regras de validação
-                $this->validacao_dos_dados();
+                if($this->input->post('cadastrar') != null) {
+                    //Chamando o método que faz as regras de validação
+                    $this->validacao_dos_dados();
 
-                //Irá verificar validar os dados informados no formulario com base nas regras
-                if ($this->form_validation->run() === true) {
+                    //Irá verificar validar os dados informados no formulario com base nas regras
+                    if ($this->form_validation->run() === true) {
 
-                    //Caso não houver nenhum erro de validação, iremos pegar os dados  via POST
-                    $dados = elements(array('atividadesNome', 'atividadesEventosId', 'atividadesPalestrantesId', 'atividadesTipoId', 'atividadesDescricao', 'atividadesValor', 'atividadesDataInicio', 'atividadesDataTermino', 'atividadesLocal', 'atividadesVisibilidade', 'atividadesVagas', 'atividadesCargaHoraria'), $this->input->post());
+                        //Caso não houver nenhum erro de validação, iremos pegar os dados  via POST
+                        $dados = elements(array('atividadesNome', 'atividadesEventosId', 'atividadesPalestrantesId', 'atividadesTipoId', 'atividadesDescricao', 'atividadesValor', 'atividadesDataInicio', 'atividadesDataTermino', 'atividadesLocal', 'atividadesVisibilidade', 'atividadesVagas', 'atividadesCargaHoraria'), $this->input->post());
 
-                    //Agora vamos chamar o model atividades para utilizar o método de inserção no banco de dados
-                    $this->atividades_model->inserir($dados);
+                        //Agora vamos chamar o model atividades para utilizar o método de inserção no banco de dados
+                        $this->atividades_model->inserir($dados);
 
-                    //Habilitando um flashdata para notificar o sucesso da inserção
-                    $this->session->set_flashdata('cadastro-ok', 'Cadastro efetuado com Sucesso!');
+                        //Habilitando um flashdata para notificar o sucesso da inserção
+                        $this->session->set_flashdata('cadastro-ok', 'Cadastro efetuado com Sucesso!');
 
-                    //Redirecionando para uma página
-                    redirect('atividades/listar');
+                        //Redirecionando para uma página
+                        redirect('atividades/listar');
+                    }
                 }
                 $data = array(
                     'arquivo' => 'inserir',
@@ -56,6 +58,9 @@ class Atividades extends CI_Controller {
                     'eventos' => $this->eventos_model->listar()->result(),
                     'usuarios' => $this->usuarios_model->listar_palestrantes()->result(),
                 );
+                if($this->input->post('atividadesEventosId') != null) {
+                    $data['data'] = $this->eventos_model->obter_dataEvento_mostrar_array($this->input->post('atividadesEventosId'));
+                }
                 $this->load->view('sistema', $data);
             } else {
                 $this->session->set_flashdata('sem-permissao', 'É necessário ser administrador para realizar essa ação!');

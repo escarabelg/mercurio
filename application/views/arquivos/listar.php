@@ -34,7 +34,6 @@ echo validation_errors("<p class='mensagem-erro'", "</p>");
 $evento = new ArrayObject;
 foreach($eventos as $row) {$evento[$row->eventosId] = $row->eventosNome;}
 
-
 echo form_label("Selecione o Evento");
 echo form_dropdown('eventosId', $evento);
 

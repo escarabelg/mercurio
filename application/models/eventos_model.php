@@ -41,6 +41,36 @@ class Eventos_model extends CI_Model {
         }
     }
 
+    public function obter_dataEvento_mostrar_array($eventosId = null) {
+        if ($eventosId != null) {
+            $this->db->where("eventosId", $eventosId);
+            $query = $this->db->get("eventos");
+
+            if ($query->num_rows() > 0) {
+                $diaInicio = substr($query->row()->eventosDataInicio, -2);
+                $diaTermino = substr($query->row()->eventosDataTermino, -2);
+                $ano_mes = substr($query->row()->eventosDataInicio, 0, 8);
+                $totalDeDias = $diaTermino - $diaInicio;
+                $dataDoEvento = array();
+
+
+                for ($i = 0; $i <= $totalDeDias; $i++) {
+                    if ($i == 0) {
+                        $dataDoEvento[$i] = $ano_mes . $diaInicio;
+                    }
+                    if (strlen($diaInicio) == 2) {
+                        $dataDoEvento[$i] = $ano_mes . $diaInicio++;
+                    } else {
+                        $dataDoEvento[$i] = $ano_mes . "0" . $diaInicio++;
+                    }
+                }
+                return $dataDoEvento;
+            } else {
+                return false;
+            }
+        }
+    }
+    
     public function deletar($id = null) {
         if ($id != null) {
             $this->db->where('eventosId', $id);

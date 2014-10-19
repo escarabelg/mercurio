@@ -22,7 +22,7 @@ class Inscricoes extends CI_Controller {
         $data = array(
             'arquivo' => 'index',
             'controllador' => 'inscricoes',
-            'titulo' => 'login',
+            'titulo' => 'INDEX',
         );
         $this->load->view('inscricoes', $data);
     }
