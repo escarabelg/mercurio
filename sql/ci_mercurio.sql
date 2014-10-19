@@ -107,6 +107,6 @@ CREATE TABLE inscricoes (
   inscricoesAtividadesId integer NOT NULL,
   inscricoesUsuariosId integer NOT NULL,
   inscricoesStatus char(1),
-  CONSTRAINT inscricoes_AtividadesId FOREIGN KEY(inscricoesAtividadesId) REFERENCES eventos(eventosId),
+  CONSTRAINT inscricoes_AtividadesId FOREIGN KEY(inscricoesAtividadesId) REFERENCES atividades(atividadesId),
   CONSTRAINT inscricoes_UsuariosId FOREIGN KEY(inscricoesUsuariosId) REFERENCES usuarios(usuariosId)
 )ENGINE=InnoDB;

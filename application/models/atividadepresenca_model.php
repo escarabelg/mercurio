@@ -88,5 +88,9 @@ class AtividadePresenca_model extends CI_Model {
             $this->db->delete('atividadePresenca');
         }
     }
+    
+    public function data() {
+        
+    }
 
 }
