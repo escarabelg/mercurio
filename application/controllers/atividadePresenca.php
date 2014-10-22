@@ -34,10 +34,16 @@ class AtividadePresenca extends CI_Controller {
                 if ($this->input->post('cadastrar') != null) {
                     //Chamando o método que faz as regras de validação
                     //Caso não houver nenhum erro de validação, iremos pegar os dados  via POST
-                    $dados = elements(array('atividadePresencaData', 'atividadePresencaUsuariosId', 'atividadePresencaAtividadeId', 'atividadePresencaIs'), $this->input->post());
-
+                    $dados = elements(array('atividadePresencaData', 'atividadePresencaAtividadesId'), $this->input->post());
+                    $contador = elements(array('contador'), $this->input->post());
                     //Agora vamos chamar o model atividadePresenca para utilizar o método de inserção no banco de dados
-                    $this->atividadePresenca_model->inserir($dados);
+                    $datta = elements(array('atividadePresencaUsuarioId', 'atividadePresencaI'), $this->input->post());
+                    for($i=0; $i <= sizeof($contador['contador']); $i++) {
+                        $dados['atividadePresencaUsuariosId'] = element("atividadePresencaUsuarioId", $datta);
+                        $dados['atividadePresencaIs'] = "S";
+                        $this->atividadePresenca_model->inserir($dados);
+                    }
+                    
 
                     //Habilitando um flashdata para notificar o sucesso da inserção
                     $this->session->set_flashdata('cadastro-ok', 'Cadastro efetuado com Sucesso!');

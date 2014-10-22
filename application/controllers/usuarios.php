@@ -36,7 +36,7 @@ class Usuarios extends CI_Controller {
         if ($this->form_validation->run() === true) {
 
             //Caso não houver nenhum erro de validação, iremos pegar os dados  via POST
-            $dados = elements(array('usuariosNome', 'usuariosEmail', 'usuariosSenha', 'usuariosCep', 'usuariosCpf'), $this->input->post());
+            $dados = elements(array('usuariosNome', 'usuariosEmail', 'usuariosSenha', 'usuariosCpf'), $this->input->post());
 
             //Vamos hashear em MD5 a senha para maior segurança e tal '-'
             $dados['usuariosSenha'] = $dados['usuariosSenha'];
@@ -233,7 +233,6 @@ class Usuarios extends CI_Controller {
         //Criando regras de validação de dados
         $this->form_validation->set_rules('usuariosNome', 'Nome Completo', 'trim|required|max_length[50]|ucwords');
         $this->form_validation->set_rules('usuariosCpf', 'CPF', 'trim|required|max_length[14]');
-        $this->form_validation->set_rules('usuariosCep', 'CEP', 'trim|required|max_length[9]');
         $this->form_validation->set_rules('usuariosEmail', 'E-mail', 'trim|required|max_length[50]|strtolower|valid_email|is_unique[usuarios.usuariosEmail]');
         $this->form_validation->set_rules('usuariosSenha', 'Senha', 'trim|required|strtolower');
         $this->form_validation->set_rules('usuariosSenha2', 'Repita a Senha', 'trim|required|strtolower|matches[usuariosSenha]');

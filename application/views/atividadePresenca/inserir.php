@@ -13,7 +13,7 @@ foreach ($eventos as $row) {
 
 echo form_label('Evento');
 echo form_dropdown('atividadePresencaEventosId', $evento);
-
+$contador = 0;
 if ($this->input->post('atividadePresencaEventosId') != null) {
     $atividade = new ArrayObject;
     foreach ($atividades as $row) {
@@ -27,13 +27,13 @@ if ($this->input->post('atividadePresencaEventosId') != null) {
         $data = $this->atividades_model->obter_dataAtividade_mostrar_array($this->input->post('atividadePresencaAtividadesId'));
         echo form_label('Data');
         echo form_dropdown('atividadePresencaData', $data);
-        $contador = 0;
+        
         if ($this->input->post('atividadePresencaData') != null) {
 
             foreach ($inscricoes as $linha) {
                 if ($linha->inscricoesAtividadesId == $this->input->post('atividadePresencaAtividadesId')) {
                     $this->table->set_heading('Usuário', 'Presente?');
-                    $this->table->add_row($this->usuarios_model->obter_usuario_por_id($linha->inscricoesUsuariosId)->row()->usuariosNome, (form_checkbox(array('name' => 'atividadePresencaData'), set_value('atividadePresencaData'), 'checked')));
+                    $this->table->add_row(form_input(array('name' => "atividadesUsuarioId[$contador]"), set_value('atividadesUsuarioId', $this->usuarios_model->obter_usuario_por_id($linha->inscricoesUsuariosId)->row()->usuariosNome),'disabled'), (form_checkbox(array('name' => "atividadePresencaI[$contador]"), set_value('atividadePresencaI'), 'checked')));
                     $contador++;
                 }
             }
@@ -55,6 +55,7 @@ if ($this->input->post('atividadePresencaEventosId') != null) {
 }
 if ($this->input->post('atividadePresencaAtividadesId') != null && $this->input->post('atividadePresencaEventosId') != null && $this->input->post('atividadePresencaData') != null) {
 
+    echo form_hidden('contador', $contador);
     echo form_submit(array('name' => 'cadastrar'), 'Cadastrar');
 }
 echo form_close();

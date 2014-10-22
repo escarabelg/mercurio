@@ -1,4 +1,5 @@
-<?php if (element('usuario-permissao', $this->session->all_userdata()) == 1): ?>
+
+<?php /* if (element('usuario-permissao', $this->session->all_userdata()) == 1): ?>
     <div class="caixa-menu">
         <p>&nsc;Usuários:
             <?php echo anchor('usuarios/inserir', 'C') . anchor('usuarios/listar', 'R') . anchor('usuarios/alterar', 'U') . anchor('usuarios/deletar', 'D'); ?>
@@ -14,7 +15,7 @@
             <br/>
             &nsc;Arquivos:
             <?php echo anchor('arquivos/inserir', 'C') . anchor('arquivos/listar', 'R') . anchor('arquivos/avaliar', '|Avaliar|') . anchor('arquivos/deletar', 'D'); ?>
-            <br/>
+            <br/>*          
             &nsc;Inscricoes:
             <?php echo anchor('inscricoes/inserir', 'C') . anchor('inscricoes/listar', 'R') . anchor('inscricoes/deletar', 'D'); ?>
             <br/>
@@ -53,7 +54,7 @@ if (element('usuario-permissao', $this->session->all_userdata()) == 0):
         echo "<br/>";
         echo "&nsc;";
         echo "<span class='mensagem-sucesso'>";
-            echo "Olá, " . $this->session->userdata('usuario-email') . "</span> - " . anchor('usuarios/logout', 'Logout');
+        echo "Olá, " . $this->session->userdata('usuario-email') . "</span> - " . anchor('usuarios/logout', 'Logout');
         } else {
         echo "&nsc;";
         echo anchor('usuarios/login', 'Faça seu Login');
@@ -62,4 +63,4 @@ if (element('usuario-permissao', $this->session->all_userdata()) == 0):
     </p>
     <hr/>
     </div>
-<?php endif; ?>
+<?php endif; */ ?>
