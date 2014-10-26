@@ -62,13 +62,22 @@ if ($this->session->flashdata('cadastro-ok')) {
 
             <div class="body bg-gray">
                 <div class="form-group">
+                    <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-user"></span>
             <?php echo form_input(array('name' => 'usuariosEmail', 'class' => 'form-control', 'placeholder' => 'Email'), set_value('usuariosEmail')) ?>
                 </div>
+                </div>
                 <div class="form-group">
+                    <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-asterisk"></span>
 <?php echo form_password(array('name' => 'usuariosSenha', 'class' => 'form-control', 'placeholder' => 'Senha'), set_value('usuariosSenha')) ?>
                 </div>          
+                </div>
                 <div class="form-group">
-                    <input type="checkbox" name="remember_me"/> Remember me
+                    
+                     <?php
+           
+                    ?>
                 </div>
             </div>
             <div class="footer">                                               

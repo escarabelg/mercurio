@@ -40,6 +40,14 @@ class Eventos_model extends CI_Model {
             }
         }
     }
+        public function obter_evento_por_nome($nome = null) {
+        if ($nome != null) {
+            $this->db->where('eventosNome', $nome);
+            $this->db->limit(1);
+            return $this->db->get('eventos');
+
+        }
+    }
 
     public function obter_dataEvento_mostrar_array($eventosId = null) {
         if ($eventosId != null) {

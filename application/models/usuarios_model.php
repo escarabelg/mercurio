@@ -64,6 +64,19 @@ class Usuarios_model extends CI_Model {
         }
     }
     
+    public function obter_usuario_por_nome($nome = null) {
+        if ($nome != null) {
+            //Passando como parametro de pesquisa o usuarios
+            $this->db->where('usuariosNome', $nome);
+            //Retornar somente 1 registro da pesquisa
+            $this->db->limit(1);
+            //Retornar o resultado da pesquisa no banco de dados
+            return $this->db->get('usuarios');
+        } else {
+            return false;
+        }
+    }
+    
     
     public function listar_palestrantes() {
         $query = $this->db->get('usuarios');

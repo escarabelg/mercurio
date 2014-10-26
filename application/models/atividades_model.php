@@ -41,6 +41,16 @@ class Atividades_model extends CI_Model {
             }
         }
     }
+    
+        public function obter_atividade_por_nome($nome = null) {
+        if ($nome != null) {
+            $this->db->where('atividadesNome', $nome);
+            $this->db->limit(1);
+            return $this->db->get('atividades');
+
+        }
+    }
+
 
     public function obter_atividadeTipo_por_atividade($id = null) {
         if ($id != null) {

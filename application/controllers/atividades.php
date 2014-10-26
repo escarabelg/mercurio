@@ -38,8 +38,11 @@ class Atividades extends CI_Controller {
                     if ($this->form_validation->run() === true) {
 
                         //Caso não houver nenhum erro de validação, iremos pegar os dados  via POST
-                        $dados = elements(array('atividadesNome', 'atividadesEventosId', 'atividadesPalestrantesId', 'atividadesTipoId', 'atividadesDescricao', 'atividadesValor', 'atividadesDataInicio', 'atividadesDataTermino', 'atividadesLocal', 'atividadesVisibilidade', 'atividadesVagas', 'atividadesCargaHoraria'), $this->input->post());
+                        $dados = elements(array('atividadesNome', 'atividadesDescricao', 'atividadesValor', 'atividadesDataInicio', 'atividadesDataTermino', 'atividadesLocal', 'atividadesVisibilidade', 'atividadesVagas', 'atividadesCargaHoraria'), $this->input->post());
 
+                        $dados['atividadesEventosId'] = $this->input->post('atividadesEventosId');
+                        $dados['atividadesTipoId'] = $this->input->post('atividadesTipoId');
+                        $dados['atividadesPalestrantesId'] = $this->input->post('atividadesPalestrantesId');
                         //Agora vamos chamar o model atividades para utilizar o método de inserção no banco de dados
                         $this->atividades_model->inserir($dados);
 
@@ -96,6 +99,7 @@ class Atividades extends CI_Controller {
     public function alterar() {
         if ($this->session->userdata('usuario-id') != null) {
             if (element('usuario-permissao', $this->session->all_userdata()) == 1) {
+                if($this->input->post('alterar') != null) {
 
                 //Chamando o metodo que define as regras de validação
                 $this->validacao_dos_dados();
@@ -114,6 +118,7 @@ class Atividades extends CI_Controller {
                     //redirecionando para a listagem de atividades
                     redirect('atividades/listar');
                 }
+                }
                 $data = array(
                     'arquivo' => 'alterar',
                     'controllador' => 'atividades',
@@ -122,6 +127,9 @@ class Atividades extends CI_Controller {
                     'eventos' => $this->eventos_model->listar()->result(),
                     'usuarios' => $this->usuarios_model->listar_palestrantes()->result(),
                 );
+                if($this->input->post('atividadesEventosId') != null) {
+                    $data['data'] = $this->eventos_model->obter_dataEvento_mostrar_array($this->input->post('atividadesEventosId'));
+                }
                 $this->load->view('sistema', $data);
             } else {
                 $this->session->set_flashdata('sem-permissao', 'É necessário ser administrador para realizar essa ação!');

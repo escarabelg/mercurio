@@ -41,6 +41,15 @@ class AtividadesTipos_model extends CI_Model {
         }
     }
     
+    public function obter_atividadesTipos_por_nome($nome = null) {
+        if ($nome != null) {
+            $this->db->where('atividadesTiposNome', $nome);
+            $this->db->limit(1);
+            return $this->db->get('atividadesTipos');
+
+        }
+    }
+    
     public function deletar($id = null) {
         if($id != null) {
             $this->db->where('atividadesTiposId', $id);

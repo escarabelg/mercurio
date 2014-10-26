@@ -2,7 +2,7 @@
 <html class="bg-black">
     <head>
         <meta charset="UTF-8">
-        <title>AdminLTE | Registration Page</title>
+        <title>Mercurio | Registro</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -22,22 +22,37 @@
             echo form_open('usuarios/inserir');
             echo validation_errors("<div class = 'alert alert-danger alert-dismissable'>" . "<i class = 'fa fa-ban'></i>" . "<button type = 'button' class = 'close' data-dismiss = 'alert' aria-hidden = 'true'>&times;" . "</button>" . "<b>Erro! </b>" . $this->session->flashdata('retrieve-action'), "</div>");
             ?>
-            <div class="header">Register New Membership</div>
+            <div class="header">Registro de usuário</div>
             <div class="body bg-gray">
                 <div class="form-group">
+                    <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-info-sign"></span>
                     <?php echo form_input(array('name' => 'usuariosNome', 'class' => 'form-control', 'placeholder' => 'Nome Completo'), set_value('usuariosNome')) ?>
                 </div>
+                </div>
                 <div class="form-group">
+                    <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-user"></span>
                     <?php echo form_input(array('name' => 'usuariosEmail', 'class' => 'form-control', 'placeholder' => 'Email'), set_value('usuariosEmail')) ?>
                 </div>
+                </div>
                 <div class="form-group">
+                                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-info-sign"></span>
                     <?php echo form_input(array('name' => 'usuariosCpf', 'class' => 'form-control', 'placeholder' => 'CPF'), set_value('usuariosCpf')) ?>
                 </div>
-                <div class="form-group">
-                    <?php echo form_password(array('name' => 'usuariosSenha', 'class' => 'form-control', 'placeholder' => 'Senha'), set_value('usuariosSenha')) ?>
                 </div>
                 <div class="form-group">
+                     <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-asterisk"></span>
+                    <?php echo form_password(array('name' => 'usuariosSenha', 'class' => 'form-control', 'placeholder' => 'Senha'), set_value('usuariosSenha')) ?>
+                </div>
+                </div>
+                <div class="form-group">
+                     <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-asterisk"></span>
                     <?php echo form_password(array('name' => 'usuariosSenha2', 'class' => 'form-control', 'placeholder' => 'Repita a senha'), set_value('usuariosSenha2')) ?>
+                </div>
                 </div>
             </div>
             <div class="footer">                    
@@ -47,7 +62,7 @@
                 ?>
 
 
-                <a href="<?php echo base_url(); ?>usuarios/login" class="text-center">Eu já possuo uma conta</a>
+                <a href="<?php echo base_url(); ?>usuarios/login" class="text-center">Me tire daqui!, Já possuo uma conta.</a>
             </div>
         </form>
 

@@ -1,46 +1,113 @@
 <?php
 $usuariosId = $this->uri->segment(3);
-if($usuariosId == null) {
+if ($usuariosId == null) {
     redirect("usuarios/listar");
 }
-echo "<h1>&nsc; Alteração de Usuários</h1>";
+
 $query = $this->usuarios_model->obter_usuario_por_id($usuariosId)->row();
+?>
+<div class="container">
+    <div class="col-md-8 col-lg-8 col-xs-12">
+        <div class="panel panel-default panel-body">
+            <?php echo validation_errors("<div class = 'alert alert-danger alert-dismissable'>" . "<i class = 'fa fa-ban'></i>" . "<button type = 'button' class = 'close' data-dismiss = 'alert' aria-hidden = 'true'>&times;" . "</button>" . "<b>Erro! </b>" . $this->session->flashdata('retrieve-action'), "</div>");?>
+            <div class="panel-heading bg-gray">
+                <h3 class="panel-title"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;Edição de informações pessoais</h3>
+            </div>
+            <?php
+            echo form_open("usuarios/alterar/$usuariosId", array('class' => 'form-horizontal col-lg-12'));
+            ?>
+            <div class="body">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="control-label" for="usuariosNome">Nome Completo</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-info-sign"></span>
+                        <?php echo form_input(array('name' => 'usuariosNome', 'class' => 'form-control'), set_value('usuariosNome', $query->usuariosNome)); ?>
+                    </div>
+                    </div>
 
-echo form_open("usuarios/alterar/$usuariosId");
-echo validation_errors("<p class='mensagem-erro'>",'</p>');
-echo form_label('Nome Completo');
-echo form_input(array('name' => 'usuariosNome'), set_value('usuariosNome', $query->usuariosNome));
+                    <div class="form-group">
+                        <label class="control-label" for="usuariosEmail">Email</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-ban-circle"></span>
+                        <?php echo form_input(array('name' => 'usuariosEmail', 'class' => 'form-control'), set_value('usuariosEmail', $this->usuarios_model->obter_usuario_por_id($usuariosId)->row()->usuariosEmail), 'disabled'); ?>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="usuariosCpf">CPF</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-info-sign"></span>
+                        <?php echo form_input(array('name' => 'usuariosCpf', 'class' => 'form-control'), set_value('usuariosCpf', $query->usuariosCpf)); ?>
+                    </div>
+                    </div>
 
-echo form_label('CPF');
-echo form_input(array('name' => 'usuariosCpf'), set_value('usuariosCpf',$query->usuariosCpf));
+                    <div class="form-group">
+                        <label class="control-label" for="usuariosCep">CEP</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-screenshot"></span>
+                        <?php echo form_input(array('name' => 'usuariosCep', 'class' => 'form-control'), set_value('usuariosCep', $query->usuariosCep)); ?>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="usuariosDataDeNascimento">Data de Nascimento</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+                        <?php echo form_input(array('name' => 'usuariosDataDeNascimento', 'class' => 'form-control'), set_value('usuariosDataDeNascimento', $query->usuariosDataDeNascimento)); ?>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="usuariosTitulacoes">Titulações</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-bookmark"></span>
+                        <?php echo form_input(array('name' => 'usuariosTitulacoes', 'class' => 'form-control'), set_value('usuariosTitulacoes', $query->usuariosTitulacoes)); ?>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="usuariosEndereco">Endereço</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-home"></span>
+                        <?php echo form_input(array('name' => 'usuariosEndereco', 'class' => 'form-control'), set_value('usuariosEndereco', $query->usuariosEndereco)); ?>
+                    </div>
+                    </div>
 
-echo form_label('CEP');
-echo form_input(array('name' => 'usuariosCep'), set_value('usuariosCep',$query->usuariosCep));
+                    <div class="form-group">
+                        <label class="control-label" for="usuariosBairro">Bairro</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-home"></span>
+                        <?php echo form_input(array('name' => 'usuariosBairro', 'class' => 'form-control'), set_value('usuariosBairro', $query->usuariosBairro)); ?>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="usuariosNumero">Número</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-home"></span>
+                        <?php echo form_input(array('name' => 'usuariosNumero', 'class' => 'form-control'), set_value('usuariosNumero', $query->usuariosNumero)); ?>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="usuariosEstado">Estado</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-home"></span>
+                        <?php echo form_input(array('name' => 'usuariosEstado', 'class' => 'form-control'), set_value('usuariosEstado', $query->usuariosEstado)); ?>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="usuariosCidade">Cidade</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-home"></span>
+                        <?php echo form_input(array('name' => 'usuariosCidade', 'class' => 'form-control'), set_value('usuariosCidade', $query->usuariosCidade)); ?>
+                    </div>
+                    </div>
 
-echo form_label('Data de Nascimento');
-echo form_input(array('name' => 'usuariosDataDeNascimento'), set_value('usuariosDataDeNascimento',$query->usuariosDataDeNascimento));
+                    <?php echo form_hidden('usuariosId', $query->usuariosId); ?>
+                    <div class="form-group">
+                        <?php echo form_submit(array('name' => 'alterar', 'class' => 'btn btn-primary'), 'Alterar'); ?>
 
-echo form_label('Titulações');
-echo form_input(array('name' => 'usuariosTitulacoes'), set_value('usuariosTitulacoes',$query->usuariosTitulacoes));
-
-echo form_label('Endereço');
-echo form_input(array('name' => 'usuariosEndereco'), set_value('usuariosEndereco',$query->usuariosEndereco));
-
-echo form_label('Bairro');
-echo form_input(array('name' => 'usuariosBairro'), set_value('usuariosBairro',$query->usuariosBairro));
-
-echo form_label('Número');
-echo form_input(array('name' => 'usuariosNumero'), set_value('usuariosNumero',$query->usuariosNumero));
-
-echo form_label('Estado');
-echo form_input(array('name' => 'usuariosEstado'), set_value('usuariosEstado',$query->usuariosEstado));
-
-echo form_label('Cidade');
-echo form_input(array('name' => 'usuariosCidade'), set_value('usuariosCidade',$query->usuariosCidade));
-
-echo form_label('Email');
-echo form_input(array('name' => 'usuariosEmail'), set_value('usuariosEmail',$this->usuarios_model->obter_usuario_por_id($usuariosId)->row()->usuariosEmail), 'disabled');
-
-echo form_hidden('usuariosId', $query->usuariosId);
-echo form_submit(array('name' => 'alterar'), 'Alterar');
-echo form_close();
+                        <?php echo form_close(); ?>
+                    </div>
+                </fieldset>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
