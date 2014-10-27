@@ -11,7 +11,7 @@ $query = $this->eventos_model->obter_evento_por_id($eventosId);
         <div class="panel panel-default panel-body">
             <?php echo validation_errors("<div class = 'alert alert-danger alert-dismissable'>" . "<i class = 'fa fa-ban'></i>" . "<button type = 'button' class = 'close' data-dismiss = 'alert' aria-hidden = 'true'>&times;" . "</button>" . "<b>Erro! </b>" . $this->session->flashdata('retrieve-action'), "</div>");?>
             <div class="panel-heading bg-gray">
-                <h3 class="panel-title"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;Deseja realmente excuir este evento?</h3>
+                <h3 class="panel-title"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;Deseja realmente excluir este evento?</h3>
             </div>
             <?php
             echo form_open("eventos/deletar/$eventosId", array('class' => 'form-horizontal col-lg-12'));

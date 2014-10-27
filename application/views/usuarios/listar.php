@@ -1,33 +1,31 @@
-<?php
-if ($this->session->flashdata('cadastro-ok')) {
-    echo "<div onload='dialog()' id='boxes'>";
-    echo "<div id='dialog' class='window'>";
-    echo "<p class='mensagem-sucesso'>" . $this->session->flashdata('cadastro-ok') . "</p>";
-    echo "</div>";
-    echo "<div id='mask'></div>";
-    echo "</div>";
-}
-
-if ($this->session->flashdata('login-ok')) {
-    echo "<div onload='dialog()' id='boxes'>";
-    echo "<div id='dialog' class='window'>";
-    echo "<p class='mensagem-sucesso'>" . $this->session->flashdata('login-ok') . "</p>";
-    echo "</div>";
-    echo "<div id='mask'></div>";
+<div class="container">
+    <div class="col-md-12 col-lg-12 col-xs-12">
+          <?php
+        if ($this->session->flashdata('cadastro-ok')) {
+    echo "<div class = 'alert alert-success alert-dismissable'>";
+    echo "<i class = 'fa fa-check'></i>";
+    echo "<button type = 'button' class = 'close' data-dismiss = 'alert' aria-hidden = 'true'>&times;";
+    echo "</button>";
+    echo "<b>Sucesso! </b>" . $this->session->flashdata('cadastro-ok');
     echo "</div>";
 }
-
-if ($this->session->flashdata('alterar-ok')) {
-    echo "<div onload='dialog()' id='boxes'>";
-    echo "<div id='dialog' class='window'>";
-    echo "<p class='mensagem-sucesso'>" . $this->session->flashdata('alterar-ok') . "</p>";
+        if ($this->session->flashdata('alterar-ok')) {
+    echo "<div class = 'alert alert-success alert-dismissable'>";
+    echo "<i class = 'fa fa-check'></i>";
+    echo "<button type = 'button' class = 'close' data-dismiss = 'alert' aria-hidden = 'true'>&times;";
+    echo "</button>";
+    echo "<b>Sucesso! </b>" . $this->session->flashdata('alterar-ok');
     echo "</div>";
-    echo "<div id='mask'></div>";
+}
+        if ($this->session->flashdata('login-ok')) {
+    echo "<div class = 'alert alert-success alert-dismissable'>";
+    echo "<i class = 'fa fa-check'></i>";
+    echo "<button type = 'button' class = 'close' data-dismiss = 'alert' aria-hidden = 'true'>&times;";
+    echo "</button>";
+    echo "<b>Sucesso! </b>" . $this->session->flashdata('login-ok');
     echo "</div>";
 }
 ?>
-<div class="container">
-    <div class="col-md-12 col-lg-12 col-xs-12">
         <div class="panel panel-default panel-body">
 
             <div class="panel-heading bg-gray">

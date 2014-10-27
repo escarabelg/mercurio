@@ -71,8 +71,8 @@ class Arquivos extends CI_Controller {
                 'titulo' => 'Lista de Arquivos',
                 'eventos' => $this->eventos_model->listar()->result(),
             );
-            if ($this->input->post('eventosId') != null) {
-                $data['arquivos'] = $this->arquivos_model->listar_por_evento_total($this->input->post('eventosId'))->result();
+            if ($this->input->post('arquivosEventosId') != null) {
+                $data['arquivos'] = $this->arquivos_model->listar_por_evento_total($this->input->post('arquivosEventosId'))->result();
             }
 
             $this->load->view('sistema', $data);
@@ -91,12 +91,12 @@ class Arquivos extends CI_Controller {
                 'titulo' => 'Avaliar Arquivos',
                 'eventos' => $this->eventos_model->listar()->result(),
             );
-            if ($this->input->post('eventosId') != null) {
-                $data['arquivos'] = $this->arquivos_model->listar_por_evento($this->input->post('eventosId'))->result();
+            if ($this->input->post('arquivosEventosId') != null) {
+                $data['arquivos'] = $this->arquivos_model->listar_por_evento($this->input->post('arquivosEventosId'))->result();
             }
 
             $this->load->view('sistema', $data);
-            if ($this->input->post('eventosId') != null && $this->input->post('arquivosId') != null) {
+            if ($this->input->post('arquivosEventosId') != null && $this->input->post('arquivosId') != null) {
                 $dados = elements(array('arquivosDescricao', 'arquivosStatus'), $this->input->post());
                 $this->arquivos_model->avaliar($dados, array('arquivosId' => $this->input->post('arquivosId')));
 

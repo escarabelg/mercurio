@@ -100,7 +100,7 @@ class Inscricoes extends CI_Controller {
                 $this->inscricoes_model->alterar($dados, array('inscricoesId' => $this->input->post('inscricoesId')));
 
                 //Criando um flashdata para informar o sucesso na alteração
-                $this->session->set_flashdata('alterar-ok', 'Atividade alterada com sucesso!');
+                $this->session->set_flashdata('alterar-ok', 'Inscrição alterada com sucesso!');
 
                 //redirecionando para a listagem de inscricoes
                 redirect('inscricoes/listar');
@@ -129,7 +129,7 @@ class Inscricoes extends CI_Controller {
                 $this->inscricoes_model->deletar($this->input->post('inscricoesId'));
 
                 //Criando um flashdata para informar o sucesso na alteração
-                $this->session->set_flashdata('deletar-ok', 'Atividade deletada com sucesso!');
+                $this->session->set_flashdata('deletar-ok', 'Inscrição deletada com sucesso!');
 
                 //redirecionando para a listagem de inscricoes
                 redirect('inscricoes/listar');

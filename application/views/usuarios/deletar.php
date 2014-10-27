@@ -10,7 +10,7 @@ $query = $this->usuarios_model->obter_usuario_por_id($usuariosId)->row();
         <div class="panel panel-default panel-body">
             <?php echo validation_errors("<div class = 'alert alert-danger alert-dismissable'>" . "<i class = 'fa fa-ban'></i>" . "<button type = 'button' class = 'close' data-dismiss = 'alert' aria-hidden = 'true'>&times;" . "</button>" . "<b>Erro! </b>" . $this->session->flashdata('retrieve-action'), "</div>");?>
             <div class="panel-heading bg-gray">
-                <h3 class="panel-title"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;Deseja realmente excuir este registro?</h3>
+                <h3 class="panel-title"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;Deseja realmente excluir este registro?</h3>
             </div>
             <?php
             echo form_open("usuarios/deletar/$usuariosId", array('class' => 'form-horizontal col-lg-12'));
