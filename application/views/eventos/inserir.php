@@ -116,6 +116,7 @@ jQuery('#datetimepicker').datetimepicker();</script>
                     </div>
                     </div>
                     <div class="form-group">
+                        <?php echo form_hidden('eventosCriadorId', $this->session->userdata('usuario-id')); ?>                        
                         <?php echo form_submit(array('name' => 'cadastrar', 'class' => 'btn btn-primary'), 'Cadastrar'); ?>
 
                         <?php echo form_close(); ?>

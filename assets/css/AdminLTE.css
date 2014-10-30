@@ -10,6 +10,9 @@
     Core: General style
 ----------------------------
 */
+.mensagem-erro {
+    color: red;
+}
 html,
 body {
   overflow-x: hidden!important;

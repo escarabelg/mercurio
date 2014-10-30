@@ -84,6 +84,7 @@ class Atividades extends CI_Controller {
                     'controllador' => 'atividades',
                     'titulo' => 'Lista de Atividades',
                     'atividades' => $this->atividades_model->listar()->result(),
+                    'eventos' => $this->eventos_model->listar()->result(),
                 );
                 $this->load->view('sistema', $data);
             } else {

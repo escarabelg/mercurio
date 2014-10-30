@@ -110,3 +110,22 @@ CREATE TABLE inscricoes (
   CONSTRAINT inscricoes_AtividadesId FOREIGN KEY(inscricoesAtividadesId) REFERENCES atividades(atividadesId),
   CONSTRAINT inscricoes_UsuariosId FOREIGN KEY(inscricoesUsuariosId) REFERENCES usuarios(usuariosId)
 )ENGINE=InnoDB;
+
+INSERT INTO atividadesTipos VALUES (null,'Palestra');
+INSERT INTO atividadesTipos VALUES (null,'Minicurso');
+INSERT INTO atividadesTipos VALUES (null,'Abertura');
+INSERT INTO atividadesTipos VALUES (null,'Mesa Redonda');
+INSERT INTO atividadesTipos VALUES (null,'Intervalo');
+INSERT INTO atividadesTipos VALUES (null,'Workshop');
+INSERT INTO atividadesTipos VALUES (null,'Apresentação de Artigos');
+INSERT INTO atividadesTipos VALUES (null,'Sessão Técnica');
+INSERT INTO atividadesTipos VALUES (null,'Oficina');
+INSERT INTO atividadesTipos VALUES (null,'Exposição');
+INSERT INTO atividadesTipos VALUES (null,'Encerramento');
+INSERT INTO atividadesTipos VALUES (null,'Estudo de Caso');
+INSERT INTO atividadesTipos VALUES (null,'Café da Manhã');
+INSERT INTO atividadesTipos VALUES (null,'Almoço');
+INSERT INTO atividadesTipos VALUES (null,'Jantar');
+
+INSERT INTO `usuarios` (`usuariosId`, `usuariosNome`, `usuariosCpf`, `usuariosRg`, `usuariosCep`, `usuariosDataDeNascimento`, `usuariosDataDeCadastro`, `usuariosTitulacoes`, `usuariosEndereco`, `usuariosBairro`, `usuariosNumero`, `usuariosEstado`, `usuariosImagem`, `usuariosCidade`, `usuariosEmail`, `usuariosSenha`, `usuariosSexo`, `usuariosPermissao`) VALUES
+(NULL, 'Fulano Batista dos Santos', '13.456.789-33', '10455078', '76873-000', '1990-10-10', '1980-05-03', NULL, '1', '1', '1', '1', NULL, '1', 'admin@mercurio.com', 'mercuriobeta123', 'M', 1);

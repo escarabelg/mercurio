@@ -33,7 +33,20 @@ class Inscricoes_model extends CI_Model {
         return $this->db->get('inscricoes');
     }
 
-    public function obter_inscricao_por_atividade_e_usuario($usuarioId,$atividadeId) {
+    public function inscricao_total_por_evento($eventosId) {
+        if ($eventosId != null) {
+            $sql = "SELECT count(i.inscricoesId) as inscricoesTotal FROM inscricoes i JOIN atividades a ON i.inscricoesAtividadesId = a.atividadesId JOIN eventos e ON e.eventosId = a.atividadesEventosId WHERE e.eventosId = ?";
+            $this->db->limit(1);
+            $query = $this->db->query($sql, array($eventosId));
+
+
+            if ($query->num_rows == 1) {
+                return $query->row();
+            }
+        }
+    }
+
+    public function obter_inscricao_por_atividade_e_usuario($usuarioId, $atividadeId) {
         if ($usuarioId != null && $atividadeId != null) {
             $this->db->where('inscricoesAtividadesId', $atividadeId);
             $this->db->where('inscricoesUsuariosId', $usuarioId);
@@ -47,7 +60,35 @@ class Inscricoes_model extends CI_Model {
             }
         }
     }
-    
+
+    public function obter_inscricao_por_usuario($usuarioId) {
+        if ($usuarioId != null) {
+            $this->db->where('inscricoesUsuariosId', $usuarioId);
+            $this->db->limit(1);
+            $query = $this->db->get('inscricoes');
+
+            if ($query->num_rows() > 0) {
+                return $query->row();
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public function obter_inscricao_por_atividade($atividadeId) {
+        if ($atividadeId != null) {
+            $this->db->where('inscricoesAtividadesId', $atividadeId);
+            $this->db->limit(1);
+            $query = $this->db->get('inscricoes');
+
+            if ($query->num_rows() > 0) {
+                return $query->row();
+            } else {
+                return false;
+            }
+        }
+    }
+
     public function obter_inscricoes_por_id($id = null) {
         if ($id != null) {
             $this->db->where('inscricoesId', $id);

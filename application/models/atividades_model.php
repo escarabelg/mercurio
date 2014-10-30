@@ -12,7 +12,7 @@ class Atividades_model extends CI_Model {
 
     public function inserir($dados = null) {
         if ($dados != null) {
-            //Selecionando o banco de dados e inserindo os dados obtidos pelo parametro
+//Selecionando o banco de dados e inserindo os dados obtidos pelo parametro
             $this->db->insert('atividades', $dados);
         }
     }
@@ -23,7 +23,7 @@ class Atividades_model extends CI_Model {
 
     public function alterar($dados = null, $condicao = null) {
         if ($dados != null && $condicao != null) {
-            //dando update passando o nome da tabela, os dados e por fim qual a condição de alteração
+//dando update passando o nome da tabela, os dados e por fim qual a condição de alteração
             $this->db->update('atividades', $dados, $condicao);
         }
     }
@@ -41,16 +41,14 @@ class Atividades_model extends CI_Model {
             }
         }
     }
-    
-        public function obter_atividade_por_nome($nome = null) {
+
+    public function obter_atividade_por_nome($nome = null) {
         if ($nome != null) {
             $this->db->where('atividadesNome', $nome);
             $this->db->limit(1);
             return $this->db->get('atividades');
-
         }
     }
-
 
     public function obter_atividadeTipo_por_atividade($id = null) {
         if ($id != null) {
@@ -70,7 +68,7 @@ class Atividades_model extends CI_Model {
         $this->db->where('atividadesEventosId', $eventoId);
         return $this->db->get('atividades');
     }
-    
+
     public function listar_por_usuario($usuarioId) {
         $sql = "SELECT * FROM atividades a JOIN inscricoes i ON a.atividadesId = i.inscricoesAtividadesId  JOIN usuarios u ON u.usuariosId = i.inscricoesUsuariosId WHERE a.atividadesVisibilidade = 'S' AND u.usuariosId = ?";
         return $this->db->query($sql, $usuarioId);
@@ -137,6 +135,31 @@ class Atividades_model extends CI_Model {
                 return $dataDaAtividade;
             } else {
                 return false;
+            }
+        }
+    }
+
+    public function atividade_possui_vagas($atividadesId) {
+        if ($atividadesId != null) {
+            $sql = "SELECT a.atividadesNome AS atividadesNome, a.atividadesId AS atividadesId, i.inscricoesUsuariosId AS inscricoesUsuariosId, count(i.inscricoesAtividadesId)  AS atividadesVagasOcupadas, a.atividadesVagas AS atividadesVagasTotal FROM atividades a JOIN inscricoes i ON a.atividadesId = i.inscricoesAtividadesId WHERE a.atividadesId = ?";
+            $this->db->limit(1);
+            $query = $this->db->query($sql, array($atividadesId));
+
+
+            if ($query->num_rows == 1) {
+                return $query->row();
+            }
+        }
+    }
+
+    public function obter_atividade_por_inscricoes($usuariosId) {
+        if ($usuariosId != null) {
+            $sql = "SELECT * FROM usuarios JOIN inscricoes ON inscricoesUsuariosId = usuariosId WHERE usuariosId = ?";
+            $this->db->limit(1);
+            $query = $this->db->query($sql, array($usuariosId));
+
+            if ($query->num_rows == 1) {
+                return $query->row();
             }
         }
     }

@@ -29,6 +29,7 @@ class Inscricoes extends CI_Controller {
 
     public function inserir() {
         if ($this->session->userdata('usuario-id') != null) {
+
             //Chamando o método que faz as regras de validação
             //Irá verificar validar os dados informados no formulario com base nas regras
             if ($this->input->post('inscricoesEventosId') != null && $this->input->post('inscricoesAtividadesId') != null) {
@@ -52,6 +53,8 @@ class Inscricoes extends CI_Controller {
                     redirect('inscricoes/listar');
                 }
             }
+
+
             $data = array(
                 'arquivo' => 'inserir',
                 'controllador' => 'inscricoes',

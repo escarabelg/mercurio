@@ -33,7 +33,10 @@
                             <select class="form-control" name="inscricoesAtividadesId">
                                 <?php 
                                 foreach ($atividades as $row) {
-                                    echo "<option value=$row->atividadesId> $row->atividadesNome </option>";
+                                    $ativi =  $this->atividades_model->atividade_possui_vagas($row->atividadesId);
+                                    if($ativi->atividadesVagasOcupadas < $ativi->atividadesVagasTotal) {
+                                        echo "<option value=$row->atividadesId> $row->atividadesNome </option>";
+                                    }
                                 }           
                     ?>
                             </select>
@@ -57,11 +60,13 @@
                                 
                        ?>
                             </select>
+                            <span class="input-group-btn">
+                                    <?php echo form_submit(array('name' => 'pesquisar', 'class' => 'btn btn-default'), 'Pesquisar');  ?>
+                                </span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <?php echo form_submit(array('name' => 'pesquisar', 'class' => 'btn btn-primary'), 'Pesquisar'); 
-                     } ?>
+                    <?php } ?>
                         <?php echo form_close(); ?>
                     </div>
                 </fieldset>

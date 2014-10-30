@@ -84,18 +84,22 @@ class Arquivos extends CI_Controller {
 
     public function avaliar() {
         if ($this->session->userdata('usuario-id') != null) {
+            if (element('usuario-permissao', $this->session->all_userdata()) == 1) {
+                $data = array(
+                    'arquivo' => 'avaliar',
+                    'controllador' => 'arquivos',
+                    'titulo' => 'Avaliar Arquivos',
+                    'eventos' => $this->eventos_model->listar()->result(),
+                );
+                if ($this->input->post('arquivosEventosId') != null) {
+                    $data['arquivos'] = $this->arquivos_model->listar_por_evento($this->input->post('arquivosEventosId'))->result();
+                }
 
-            $data = array(
-                'arquivo' => 'avaliar',
-                'controllador' => 'arquivos',
-                'titulo' => 'Avaliar Arquivos',
-                'eventos' => $this->eventos_model->listar()->result(),
-            );
-            if ($this->input->post('arquivosEventosId') != null) {
-                $data['arquivos'] = $this->arquivos_model->listar_por_evento($this->input->post('arquivosEventosId'))->result();
+                $this->load->view('sistema', $data);
+            } else {
+                $this->session->set_flashdata('sem-permissao', 'É necessário ser administrador para realizar essa ação!');
+                redirect('usuarios/login');
             }
-
-            $this->load->view('sistema', $data);
             if ($this->input->post('arquivosEventosId') != null && $this->input->post('arquivosId') != null) {
                 $dados = elements(array('arquivosDescricao', 'arquivosStatus'), $this->input->post());
                 $this->arquivos_model->avaliar($dados, array('arquivosId' => $this->input->post('arquivosId')));

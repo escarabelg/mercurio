@@ -35,6 +35,11 @@ class Arquivos_model extends CI_Model {
         return $this->db->get('arquivos');
     }
     
+    public function listar_por_usuario($usuarioId) {
+        $this->db->where('arquivosCriadorId',$usuarioId);
+        return $this->db->get('arquivos');
+    }
+    
     public function listar_por_evento_total($eventoId) {
         $this->db->where('arquivosEventosId',$eventoId);
         return $this->db->get('arquivos');
@@ -44,6 +49,19 @@ class Arquivos_model extends CI_Model {
         if ($dados != null && $condicao != null) {
             //dando update passando o nome da tabela, os dados e por fim qual a condição de alteração
             $this->db->update('arquivos', $dados, $condicao);
+        }
+    }
+    
+    public function arquivos_total_por_evento($eventosId) {
+        if ($eventosId != null) {
+            $sql = "SELECT count(a.arquivosId) as arquivosTotal FROM arquivos a JOIN eventos e ON e.eventosId = a.arquivosEventosId WHERE e.eventosId = ? AND a.arquivosStatus = 'A'";
+            $this->db->limit(1);
+            $query = $this->db->query($sql, array($eventosId));
+
+
+            if ($query->num_rows == 1) {
+                return $query->row();
+            }
         }
     }
 

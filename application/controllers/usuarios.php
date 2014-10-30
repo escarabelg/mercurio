@@ -14,17 +14,31 @@ class Usuarios extends CI_Controller {
         $this->load->library('table');
         $this->load->model('usuarios_model');
         $this->load->model('atividades_model');
+        $this->load->model('eventos_model');
+        $this->load->model('arquivos_model');
+        $this->load->model('inscricoes_model');
     }
 
     public function index() {
-        $id = $this->session->userdata('usuario-id');
-        $data = array(
-            'arquivo' => 'index',
-            'controllador' => 'usuarios',
-            'titulo' => 'INDEX',
-            'atividades' => $this->atividades_model->listar_por_usuario($id)->result(),
-        );
-        $this->load->view('sistema', $data);
+        if (element('usuario-id', $this->session->all_userdata()) != null) {
+            $id = $this->session->userdata('usuario-id');
+            $data = array(
+                'arquivo' => 'index',
+                'controllador' => 'usuarios',
+                'titulo' => 'Mercurio | Início',
+                'atividades' => $this->atividades_model->listar_por_usuario($id)->result(),
+                'eventos' => $this->eventos_model->listar()->result(),
+            );
+            if ($this->input->post('gerar') != NULL) {
+                $data['atividades'] = $this->atividades_model->listar_por_evento($this->input->post('eventosId'))->result();
+                $data['atividadess'] = $this->atividades_model->listar_por_usuario($id)->result();
+                $data['arquivos'] = $this->arquivos_model->listar_por_usuario($id)->result();
+            }
+            $this->load->view('sistema', $data);
+        } else {
+            $this->session->set_flashdata('retrieve-action', 'É necessário estar logado para realizar esta ação!');
+            redirect('usuarios/login');
+        }
     }
 
     public function inserir() {
@@ -141,6 +155,9 @@ class Usuarios extends CI_Controller {
                 $this->session->set_flashdata('sem-permissao', 'É necessário ser administrador para realizar essa ação!');
                 redirect('usuarios/login');
             }
+            if (element('usuario-permissao', $this->session->all_userdata()) == 0 && element('usuario-id', $this->session->all_userdata()) == $this->input->post('usuariosId')) {
+                
+            }
         } else {
             $this->session->set_flashdata('retrieve-action', 'É necessário estar logado para realizar esta ação!');
             redirect('usuarios/login');
@@ -182,11 +199,19 @@ class Usuarios extends CI_Controller {
                 //Criamos uma sessão com base nos dados que informei no #newdata
                 $this->session->set_userdata($newdata);
 
-                //Habilitando um flashdata para notificar o sucesso do login
-                $this->session->set_flashdata('login-ok', 'Login Efetuado com Sucesso!');
+                if ($newdata['usuario-permissao'] == 0) {
+                    //Habilitando um flashdata para notificar o sucesso do login
+                    $this->session->set_flashdata('login-ok', 'Login Efetuado com Sucesso!');
 
-                //Redirecionando para uma página
-                redirect('usuarios/listar');
+                    //Redirecionando para uma página
+                    redirect('usuarios/index');
+                } elseif ($newdata['usuario-permissao'] == 1) {
+                    //Habilitando um flashdata para notificar o sucesso do login
+                    $this->session->set_flashdata('login-ok', 'Login Efetuado com Sucesso!');
+
+                    //Redirecionando para uma página
+                    redirect('usuarios/administracao');
+                }
             } else {
                 //Caso o usuario não exista no banco de dados
                 //Habilitando um flashdata para notificar o erro do login
@@ -204,6 +229,31 @@ class Usuarios extends CI_Controller {
         );
 
         $this->load->view('sistema', $data);
+    }
+
+    public function administracao() {
+        //Verificando se o usuario está logado se estiver ele entra na condição abaixo
+        if (element('usuario-id', $this->session->all_userdata()) != null) {
+            if (element('usuario-permissao', $this->session->all_userdata()) == 1) {
+                $data = array(
+                    'arquivo' => 'administracao',
+                    'controllador' => 'usuarios',
+                    'titulo' => 'Mercurio | Administração',
+                    'eventos' => $this->eventos_model->listar()->result(),
+                );
+                if ($this->input->post('gerar') != NULL) {
+                    $data['atividades'] = $this->atividades_model->listar_por_evento($this->input->post('eventosId'))->result();
+                    $data['arquivos'] = $this->arquivos_model->listar_por_evento_total($this->input->post('eventosId'))->result();
+                }
+                $this->load->view('sistema', $data);
+            } else {
+                $this->session->set_flashdata('sem-permissao', 'É necessário ser administrador para realizar essa ação!');
+                redirect('usuarios/login');
+            }
+        } else {
+            $this->session->set_flashdata('retrieve-action', 'É necessário estar logado para realizar esta ação!');
+            redirect('usuarios/login');
+        }
     }
 
     public function logout() {
