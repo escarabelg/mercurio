@@ -1,7 +1,3 @@
-# Mercurio 0.1a
-
-Gerenciador de eventos
-=======
 # Mercurio v1.1.1
 
 O Mercurio foi desenvolvido com o intuito de simplificar o gerenciamento de eventos, onde em poucos passos é possivel gerenciar todas as suas atividades, submissões, lista de presenças e inscrições. Com uma interface limpa e responsiva para não haver dificuldades na hora da utilização do sistema. 
