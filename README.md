@@ -39,7 +39,11 @@ Por fim, é necessário uma última configuração no seu servidor que é habili
 
 ### Ferramentas Utilizadas
 
-FrameWork: CodeIgniter
+FrameWork: [CodeIgniter](https://ellislab.com/codeigniter)
+CSS: [Bootstrap](https://getbootstrap.com) - [Theme Yeti](http://bootswatch.com/yeti)
+JavaScript: [Jquery](http://jquery.com) - [Masked Input Plugin](http://digitalbush.com/projects/masked-input-plugin)
+Icones: [Font Awesome](http://fortawesome.github.io/Font-Awesome)
+
 
 ### Contato
 
