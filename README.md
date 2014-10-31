@@ -2,7 +2,6 @@
 O Mercurio foi desenvolvido com o intuito de simplificar o gerenciamento de eventos, onde em poucos passos é possivel gerenciar todas as suas atividades, submissões, lista de presenças e inscrições. Com uma interface limpa e responsiva para não haver dificuldades na hora da utilização do sistema. 
 
 ### Esquema do projeto
-======================
 ```
   Evento
     |         |---------------> Submissão de Artigos 
@@ -19,7 +18,6 @@ O Mercurio foi desenvolvido com o intuito de simplificar o gerenciamento de even
 ```
 
 ### Instalação
-==============
 O sistema foi projetado no Framework CodeIgniter, sendo assim, é simples sua utilização. Após o download do projeto, vá em **~/application/config**, e edite 2 arquivos de configuração:
 ```
 1* config.php
@@ -40,7 +38,6 @@ Por fim, é necessário uma última configuração no seu servidor que é habili
 
 
 ### Ferramentas Utilizadas
-==========================
 - **FrameWork:** [CodeIgniter](https://ellislab.com/codeigniter)
 - **CSS:** [Bootstrap](https://getbootstrap.com) - [Yeti](http://bootswatch.com/yeti) - [SB Admin 2](http://startbootstrap.com/template-overviews/sb-admin-2)
 - **JavaScript:** [Jquery](http://jquery.com) - [Masked Input Plugin](http://digitalbush.com/projects/masked-input-plugin)
@@ -48,7 +45,7 @@ Por fim, é necessário uma última configuração no seu servidor que é habili
 
 
 ### Contato
-============
+
 **Guilherme Escarabel**
 - **Email:** guilherme.escarabel@icloud.com
 - **Twitter:** [@escarabelsilva](http://twitter.com/escarabelsilva)
