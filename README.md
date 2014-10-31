@@ -1,7 +1,5 @@
 # Mercurio v1.1.1
 
-Introdução
-==============
 O Mercurio é um sistema onde é possivel gerenciar seu evento por completo, uma pequena esquematização de como é a base do sistema.
 
 **Evento**
