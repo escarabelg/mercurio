@@ -1,6 +1,6 @@
 # Mercurio v1.1.1
-=================
-O Mercurio é um sistema onde é possivel gerenciar seu evento por completo.
+
+...
 
 ### Esquema do projeto
 ```
@@ -12,9 +12,10 @@ O Mercurio é um sistema onde é possivel gerenciar seu evento por completo.
               |
               |
               |-----------------> Inscrições -----> Lista de Presença
+                                      ^
                                       |
                                       v
-                                 Usuários
+                                   Usuários
 ```
 
 ### Instalação
@@ -40,12 +41,11 @@ Por fim, é necessário uma última configuração no seu servidor que é habili
 
 ### Ferramentas Utilizadas
 
-Ferramentas podem ser enquetes, abaixo assinados, notícias ou infográficos úteis, etc.
-O objetivo é facilitar o acesso às informações a todos os cidadãos.
+FrameWork: CodeIgniter
 
-### Contact
+### Contato
 
-**Natanael Simões**
+**Guilherme Escarabel**
 
 - **Email:** guilherme.escarabel@icloud.com
 - **Twitter:** [@escarabelsilva](http://twitter.com/escarabelsilva)
