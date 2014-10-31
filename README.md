@@ -1,6 +1,7 @@
 # Mercurio v1.1.1
+O Mercurio é um sistema onde é possivel gerenciar seu evento por completo.
 
-O Mercurio é um sistema onde é possivel gerenciar seu evento por completo, uma pequena esquematização de como é a base do sistema.
+## Esquema do projeto
 ```
   Evento
     |         |---------------> Submissão de Artigos 
@@ -21,48 +22,26 @@ O sistema foi projetado no Framework CodeIgniter, sendo assim, é simples sua ut
 ```
 1* config.php
   Na linha 17: 
-    $config['base_url'] = 'seu-caminho-do-servidor'; e mude de acordo com o caminho do seu servidor
+    $config['base_url'] = 'seu-caminho-do-servidor';
 ```
 ```
 2* database.php
   Apartir da linha 51:
-    $db['default']['hostname'] = 'seu-servidor-bd'; // ex:localhost
-    $db['default']['username'] = 'login-banco-de-dados'; //ex: root
-    $db['default']['password'] = 'senha-banco-de-dados'; //ex: 1234
-    $db['default']['database'] = 'nome-da-base-de-dados'; //ex: mercurio
+    $db['default']['hostname'] = 'seu-servidor-bd'; 
+    $db['default']['username'] = 'login-banco-de-dados'; 
+    $db['default']['password'] = 'senha-banco-de-dados'; 
+    $db['default']['database'] = 'nome-da-base-de-dados';
 ```
 Após mudar estas configurações é necessário criar a base de dados no seu banco. O .sql está em **~/sql**, apenas a importe e estará quase pronto para utilização.
 
 Por fim, é necessário uma última configuração no seu servidor que é habilitar o módulo de reescrita de url's no seu servidor. Após ter feito estas pequenas configurações, já é possivel utilizar o sistema por completo.
 
 
-
-```
-**Nome:** nome da obra
-**Localização:** Endereço, ou ao menos a cidade da obra
-**Prazo estimado:** Quando era esperado que terminasse
-**Início estimado:** Quando era esperado que começasse a obra
-**Data de finalização:** caso ainda não esteja finalizado(apenas estimativa), coloque entre parenteses
-**Data de início:** caso nao tenha iniciado quando previsto
-**Valores:** caso saiba dos valores, coloque aqui o valor usado de recursos públicos, privados, esperado e/ou real
-
-**Descriçao:** Acrescente aqui uma descriçao, seguindo as normas citadas no item "normas"
-
-**Links:** Coloque uma lista de notícias, e links úteis, para dar credibilidade às suas afirmações e apontar a responsabilidade pelas informações citadas
-
-**Extras:** Aqui, pode-se usar links para o vídeos, páginas de enquetes, imagens, etc.
-```
-
 #### Ferramentas Utilizadas
 
 Ferramentas podem ser enquetes, abaixo assinados, notícias ou infográficos úteis, etc.
 O objetivo é facilitar o acesso às informações a todos os cidadãos.
 
-```
-**Nome:** O nome da ferramenta
-**Descrição:** Uma descrição da ferramenta
-**Links:** Coloque aqui o link para a ferramenta.
-```
 
 ## Normas e termos
 
