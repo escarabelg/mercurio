@@ -1,6 +1,4 @@
 # Mercurio v1.1.1
-Sistema de Gerenciamento de Eventos
-===================================
 
 Introdução
 ==============
