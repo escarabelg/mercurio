@@ -1,6 +1,5 @@
 # Mercurio v1.1.1
-
-...
+O Mercurio foi desenvolvido com o intuito de simplificar o gerenciamento de eventos, onde em poucos passos é possivel gerenciar todas as suas atividades, submissões, lista de presenças e inscrições. Com uma interface limpa e responsiva para não haver dificuldades na hora da utilização do sistema. 
 
 ### Esquema do projeto
 ```
@@ -19,7 +18,6 @@
 ```
 
 ### Instalação
-==============
 O sistema foi projetado no Framework CodeIgniter, sendo assim, é simples sua utilização. Após o download do projeto, vá em **~/application/config**, e edite 2 arquivos de configuração:
 ```
 1* config.php
