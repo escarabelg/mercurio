@@ -1,7 +1,8 @@
 # Mercurio v1.1.1
 O Mercurio foi desenvolvido com o intuito de simplificar o gerenciamento de eventos, onde em poucos passos é possivel gerenciar todas as suas atividades, submissões, lista de presenças e inscrições. Com uma interface limpa e responsiva para não haver dificuldades na hora da utilização do sistema. 
 
-## Esquema do projeto
+### Esquema do projeto
+======================
 ```
   Evento
     |         |---------------> Submissão de Artigos 
@@ -17,7 +18,8 @@ O Mercurio foi desenvolvido com o intuito de simplificar o gerenciamento de even
                                    Usuários
 ```
 
-## Instalação
+### Instalação
+==============
 O sistema foi projetado no Framework CodeIgniter, sendo assim, é simples sua utilização. Após o download do projeto, vá em **~/application/config**, e edite 2 arquivos de configuração:
 ```
 1* config.php
@@ -37,7 +39,7 @@ Após mudar estas configurações é necessário criar a base de dados no seu ba
 Por fim, é necessário uma última configuração no seu servidor que é habilitar o módulo de reescrita de url's no seu servidor. Após ter feito estas pequenas configurações, já é possivel utilizar o sistema por completo.
 
 
-## Ferramentas Utilizadas
+### Ferramentas Utilizadas
 ==========================
 - **FrameWork:** [CodeIgniter](https://ellislab.com/codeigniter)
 - **CSS:** [Bootstrap](https://getbootstrap.com) - [Yeti](http://bootswatch.com/yeti) - [SB Admin 2](http://startbootstrap.com/template-overviews/sb-admin-2)
@@ -45,10 +47,9 @@ Por fim, é necessário uma última configuração no seu servidor que é habili
 - **Icones:** [Font Awesome](http://fortawesome.github.io/Font-Awesome)
 
 
-## Contato
-==========================
+### Contato
+============
 **Guilherme Escarabel**
-
 - **Email:** guilherme.escarabel@icloud.com
 - **Twitter:** [@escarabelsilva](http://twitter.com/escarabelsilva)
 - **Facebook:** http://www.facebook.com/guilherme.escarabel
