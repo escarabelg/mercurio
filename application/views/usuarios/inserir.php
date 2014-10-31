@@ -26,6 +26,7 @@
             <div class="body bg-gray">
                 <div class="form-group">
                     <div class="input-group">
+<<<<<<< HEAD
                         <span class="input-group-addon glyphicon glyphicon-info-sign"></span>
                         <?php echo form_input(array('name' => 'usuariosNome', 'class' => 'form-control', 'placeholder' => 'Nome Completo'), set_value('usuariosNome')) ?>
                     </div>
@@ -53,6 +54,35 @@
                         <span class="input-group-addon glyphicon glyphicon-asterisk"></span>
                         <?php echo form_password(array('name' => 'usuariosSenha2', 'class' => 'form-control', 'placeholder' => 'Repita a senha'), set_value('usuariosSenha2')) ?>
                     </div>
+=======
+                            <span class="input-group-addon glyphicon glyphicon-info-sign"></span>
+                    <?php echo form_input(array('name' => 'usuariosNome', 'class' => 'form-control', 'placeholder' => 'Nome Completo'), set_value('usuariosNome')) ?>
+                </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-user"></span>
+                    <?php echo form_input(array('name' => 'usuariosEmail', 'class' => 'form-control', 'placeholder' => 'Email'), set_value('usuariosEmail')) ?>
+                </div>
+                </div>
+                <div class="form-group">
+                                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-info-sign"></span>
+                    <?php echo form_input(array('name' => 'usuariosCpf', 'class' => 'form-control', 'placeholder' => 'CPF'), set_value('usuariosCpf')) ?>
+                </div>
+                </div>
+                <div class="form-group">
+                     <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-asterisk"></span>
+                    <?php echo form_password(array('name' => 'usuariosSenha', 'class' => 'form-control', 'placeholder' => 'Senha'), set_value('usuariosSenha')) ?>
+                </div>
+                </div>
+                <div class="form-group">
+                     <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-asterisk"></span>
+                    <?php echo form_password(array('name' => 'usuariosSenha2', 'class' => 'form-control', 'placeholder' => 'Repita a senha'), set_value('usuariosSenha2')) ?>
+                </div>
+>>>>>>> 576b1f11a812e8d3c06366837ed884f1899fe7b1
                 </div>
             </div>
             <div class="footer">                    
@@ -70,6 +100,7 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
+<<<<<<< HEAD
     <script src="<?php echo base_url();?>assets/js/jquery.maskedinput.js" type="text/javascript"></script>
             <script type="text/javascript">
         jQuery(function ($) {
@@ -80,5 +111,8 @@
             $("#ssn").mask("999-99-9999");
         });
     </script> 
+=======
+
+>>>>>>> 576b1f11a812e8d3c06366837ed884f1899fe7b1
 </body>
 </html>
