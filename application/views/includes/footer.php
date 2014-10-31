@@ -8,7 +8,6 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
-<<<<<<< HEAD
         <script src="<?php echo base_url();?>assets/js/jquery.maskedinput.js" type="text/javascript"></script>
                     <script type="text/javascript">
         jQuery(function ($) {
@@ -20,8 +19,6 @@
             $("#ssn").mask("999-99-9999");
         });
     </script> 
-=======
->>>>>>> 576b1f11a812e8d3c06366837ed884f1899fe7b1
 <br/>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </body>

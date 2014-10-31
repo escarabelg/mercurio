@@ -37,22 +37,14 @@ jQuery('#datetimepicker').datetimepicker();</script>
                         <label class="control-label" for="eventosDataInicio">Data de Início</label>
                         <div class="input-group">
                             <span class="input-group-addon glyphicon glyphicon-calendar"></span>
-<<<<<<< HEAD
                         <?php echo form_input(array('name' => 'eventosDataInicio', 'class' => 'form-control', 'id' => 'date'), set_value('eventosDataInicio')); ?>
-=======
-                        <?php echo form_input(array('name' => 'eventosDataInicio', 'class' => 'form-control',  'id' => 'datetimepicker'), set_value('eventosDataInicio')); ?>
->>>>>>> 576b1f11a812e8d3c06366837ed884f1899fe7b1
                     </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="eventosDataTermino">Data Término</label>
                         <div class="input-group">
                             <span class="input-group-addon glyphicon glyphicon-calendar"></span>
-<<<<<<< HEAD
                         <?php echo form_input(array('name' => 'eventosDataTermino', 'class' => 'form-control', 'id' => 'date2'), set_value('eventosDataTermino')); ?>
-=======
-                        <?php echo form_input(array('name' => 'eventosDataTermino', 'class' => 'form-control'), set_value('eventosDataTermino')); ?>
->>>>>>> 576b1f11a812e8d3c06366837ed884f1899fe7b1
                     </div>
                     </div>
                     <div class="form-group">
