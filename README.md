@@ -49,5 +49,3 @@ Por fim, é necessário uma última configuração no seu servidor que é habili
 - **Email:** guilherme.escarabel@icloud.com
 - **Twitter:** [@escarabelsilva](http://twitter.com/escarabelsilva)
 - **Facebook:** http://www.facebook.com/guilherme.escarabel
-
->>>>>>> 576b1f11a812e8d3c06366837ed884f1899fe7b1
