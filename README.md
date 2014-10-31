@@ -2,21 +2,21 @@
 
 O Mercurio é um sistema onde é possivel gerenciar seu evento por completo, uma pequena esquematização de como é a base do sistema.
 ```
-**Evento**
-    |         |---------------> **Submissão de Artigos**  
+  Evento
+    |         |---------------> Submissão de Artigos 
     |         |
     |         |
-    |--> **Atividade** <------> **Tipo de Atividade**
+    |--> Atividade <------> Tipo de Atividade
               |
               |
-              |----------------> **Inscrições** -----> **Lista de Presença**
+              |-----------------> Inscrições -----> Lista de Presença
                                       |
                                       v
-                                 **Usuários**
-              
-    
+                                 Usuários
 ```
-## Como usar
+
+## Instalação
+
 O sistema foi projetado no Framework CodeIgniter, sendo assim, é simples sua utilização. Após o download do projeto, vá em **~/application/config**, e edite 2 arquivos de configuração:
 
 1* config.php
