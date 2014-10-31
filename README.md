@@ -1,7 +1,7 @@
 # Mercurio v1.1.1
 O Mercurio é um sistema onde é possivel gerenciar seu evento por completo.
 
-## Esquema do projeto
+### Esquema do projeto
 ```
   Evento
     |         |---------------> Submissão de Artigos 
@@ -16,7 +16,7 @@ O Mercurio é um sistema onde é possivel gerenciar seu evento por completo.
                                  Usuários
 ```
 
-## Instalação
+### Instalação
 
 O sistema foi projetado no Framework CodeIgniter, sendo assim, é simples sua utilização. Após o download do projeto, vá em **~/application/config**, e edite 2 arquivos de configuração:
 ```
